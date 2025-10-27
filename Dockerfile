@@ -1,12 +1,11 @@
 FROM ubuntu
 
 RUN apt-get update
-RUN apt-get install python3
+RUN apt-get install python3-full
 
 RUN pip3 install flask
-RUN pip3 install flask-mysql
 
-COPY . /opt/source-code
+COPY app.py /opt/app.py
 
-ENTRYPOINT FLASK_APP=/opt/source-code/app.py flask run
+ENTRYPOINT FLASK_APP="/opt/app.py" flask run --host=0.0.0.0
 
